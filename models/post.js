@@ -6,12 +6,8 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     user: {
-        type: mongoose.Schema.Types.ObjectID,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
-    name: {
-        type: String,
-        required: true
     }
 }, {
     timestamps: true
