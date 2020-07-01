@@ -1,4 +1,14 @@
-body{
-    margin: 0px;
-    text-align: center;
+body {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+body #layout-main {
+  height: 100%;
+  /*flex: 1 0 auto;*/
 }
