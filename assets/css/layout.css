@@ -1,7 +1,6 @@
 body {
   margin: 0px;
   padding: 0px;
-  text-align: center;
   font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: column;
@@ -9,6 +8,7 @@ body {
 }
 
 body #layout-main {
-  height: 100%;
+  height: auto;
+  min-height: 87%;
   /*flex: 1 0 auto;*/
 }

@@ -56,4 +56,8 @@ header{
     a:hover {
         color: $white;
     }
+    a:focus {
+        color: $orange;
+        outline: 0px;
+    }
 }

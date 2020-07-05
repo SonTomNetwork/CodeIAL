@@ -53,3 +53,8 @@ header a {
 header a:hover {
   color: #fffffe;
 }
+
+header a:focus {
+  color: #ff8e3c;
+  outline: 0px;
+}
