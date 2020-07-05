@@ -127,7 +127,7 @@ home {
                 text-align: right;
                 opacity: 0.5;
                 color: $red;
-                transition: opacity 0.1s ease-in-out;
+                transition: opacity 0.15s ease-in-out;
             }
             #post-username:hover {
                 opacity: 1;   
@@ -139,6 +139,7 @@ home {
             border-top: 0px;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
+            overflow: hidden;
 
             form {
                 display: flex;
@@ -165,7 +166,7 @@ home {
                     color: $white;
                     background-color: $orange;
                     font-weight: 600;
-                    transition: background-color 0.1s ease-in-out;
+                    transition: background-color 0.15s ease-in-out;
                 }
                 #commbutton:hover {
                     background-color: $red;
@@ -181,6 +182,7 @@ home {
                 padding-bottom: 2px;
                 margin-top: 0px;
             }
+
             #comment-username {
                 margin-left: 20px;
                 padding: 0px 15px;
@@ -189,10 +191,16 @@ home {
                 margin-bottom: 5px;
                 color: $orange;
                 opacity: .5;
-                transition: opacity 0.1s ease-in-out;
+                transition: opacity 0.15s ease-in-out;
             }
             #comment-username:hover {
                 opacity: 1;
+            }
+
+            #nocomment  {
+                opacity: .5;
+                margin-left: 20px;
+                margin-bottom: 5px;
             }
         }
     }
