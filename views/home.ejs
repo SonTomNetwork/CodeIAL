@@ -2,8 +2,19 @@
 
 <home>
     <div id="lside">
-        Lol
+        <h2>Truants</h2>
+
+        <%if(locals.user) { %>
+        <% for (u of all_users) { %>
+        <p class="truantname">
+            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+        </p>
+        <% } %>
+        <% } else { %>
+        <p><a href="/users/sign-in">Log in</a> to see users.</p>
+        <% } %>
     </div>
+
     <section id="feed-posts">
         <h1>Grapevine</h1>
 
@@ -24,6 +35,7 @@
             </ul>
         </div>
     </section>
+
     <div id="rside">
         Lol 2
     </div>

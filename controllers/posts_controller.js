@@ -13,7 +13,6 @@ module.exports.create = function (req, res) {
 
         return res.redirect('back');
     });
-    console.log(req.user);
 }
 
 module.exports.destroy = function (req, res) {

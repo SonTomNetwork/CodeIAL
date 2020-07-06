@@ -19,10 +19,14 @@ module.exports.home = function (req, res) {
             }
         })
         .exec(function (err, posts) {
-            return res.render('home', {
-                title: "Home",
-                posts: posts
+            User.find({}, function (err, users) {
+                return res.render('home', {
+                    title: "Home",
+                    posts: posts,
+                    all_users: users
+                });
             });
+
         });
 
 

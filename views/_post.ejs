@@ -1,10 +1,13 @@
 <li class="post-container">
-    <% if (locals.user && locals.user.id == post.user.id) { %>
-    <a href="/posts/destroy/<%= post.id %>">Delete</a>
-    <% } %>
     <div class="post">
         <p id="post-content"><%= post.content %></p>
-        <p id="post-username"><%= post.user.name %></p>
+        <p id="post-subtext">
+            <%= post.user.name %>
+            <% if (locals.user && locals.user.id == post.user.id) { %>
+            <a href="/posts/destroy/<%= post.id %>">Delete</a>
+            <% } %>
+        </p>
+
     </div>
 
     <div class="post-comments">
