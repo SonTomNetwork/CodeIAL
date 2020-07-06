@@ -8,8 +8,10 @@ module.exports.create = async function (req, res) {
             user: req.user
         });
 
+        req.flash('success', 'Post published.');
         return res.redirect('back');
     } catch (err) {
+        req.flash('error', 'Post could not be published.');
         console.log('Error:', err);
         return;
     }
@@ -24,12 +26,15 @@ module.exports.destroy = async function (req, res) {
             post.deleteOne();
 
             await Comment.deleteMany({ post: req.params.id });
+
+            req.flash('success', 'Post deleted.');
             return res.redirect('back');
         }
         else {
             return res.redirect('back');
         }
     } catch (err) {
+        req.flash('error', 'Post could not be deleted.');
         console.log('Error:', err);
         return;
     }

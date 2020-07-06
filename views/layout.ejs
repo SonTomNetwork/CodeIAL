@@ -4,6 +4,8 @@
     <title>CodeIAL - <%= title %></title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="/css/layout.css">
     <%- style %>
 </head>
@@ -17,6 +19,28 @@
 
     <%- include('_footer'); %>
     <%- script %>
+
+    <script>
+        <% if (flash.success && flash.success.length > 0) { %>
+            new Noty({
+                theme: 'nest',
+                text: '<%= flash.success %>',
+                type: 'success',
+                layout: 'centerRight',
+                timeout: 1500
+            }).show();
+        <% } %>
+
+        <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme: 'nest',
+                text: '<%= flash.error %>',
+                type: 'error',
+                layout: 'centerRight',
+                timeout: 1500
+            }).show();
+        <% } %>
+    </script>
 </body>
 
 </html>
