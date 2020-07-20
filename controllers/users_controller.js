@@ -1,4 +1,6 @@
 const User = require('../models/users.js');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function (req, res) {
     User.findById(req.params.id, function (err, user) {
@@ -9,14 +11,34 @@ module.exports.profile = function (req, res) {
     });
 };
 
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
     if (req.user == req.params.id) {
-        User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-            console.log(req.body);
-            return res.redirect('back');
-        });
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedPFP(req, res, function (err) {
+                if (err) {
+                    console.log('Multer Error: ', err);
+                }
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+                if (req.file) {
+                    if (user.pfp) {
+                        fs.unlinkSync(path.join(__dirname + '/..' + user.pfp));
+                    }
+                    user.pfp = User.pfpPath + '/' + req.file.filename;
+                }
+
+                user.save();
+                return res.redirect('back');
+            });
+        } catch (err) {
+            req.flash('error', err);
+            return res.redirect('back');;
+        }
     }
     else {
+        req.flash('error', 'Unauthorised.');
         return res.status(401).send('Unauthorised.');
     }
 };
