@@ -1,17 +1,19 @@
-<% if (typeof post.comments != "undefined" && post.comments.length > 0) { %>
-<% for (comment of post.comments) { %>
-<li>
-    <p id="comment-content"><%= comment.content %></p>
-    <p id="comment-username">
-        <%= comment.user.name %>&nbsp;&nbsp;
-        <% if (locals.user && locals.user.id == comment.user.id) { %>
-        <a href="/comments/destroy/<%= comment.id %>">Delete</a>
-        <% } %>
-    </p>
-</li>
-<% } %>
-<% } else { %>
-<li>
-    <p id="nocomment">No comments yet.</p>
-</li>
-<% } %>
+<ul id="post-comments-<%= post._id %>">
+    <% if (typeof post.comments != "undefined" && post.comments.length > 0) { %>
+    <% for (comment of post.comments) { %>
+    <li>
+        <p id="comment-content"><%= comment.content %></p>
+        <p id="comment-username">
+            <%= comment.user.name %>&nbsp;&nbsp;
+            <% if (locals.user && locals.user.id == comment.user.id) { %>
+            <a href="/comments/destroy/<%= comment.id %>">Delete</a>
+            <% } %>
+        </p>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li>
+        <p id="nocomment">No comments yet.</p>
+    </li>
+    <% } %>
+</ul>
