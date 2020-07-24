@@ -40,3 +40,11 @@
         Lol 2
     </div>
 </home>
+
+<script src="/js/toggle_likes.js"></script>
+<script>
+    $('.like-button').each(function () {
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>

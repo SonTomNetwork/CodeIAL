@@ -3,6 +3,12 @@
     <% for (comment of post.comments) { %>
     <li>
         <p id="comment-content"><%= comment.content %></p>
+        <% if(locals.user){ %>
+        <a href="/likes/toggle/?id=<%= comment.id %>&type=Comment" class="like-button"
+            data-likes="<%= comment.likes.length %>"><%= comment.likes.length %> Likes</a>
+        <% } else{ %>
+        <%= comment.likes.length %> Likes
+        <% } %>
         <p id="comment-username">
             <%= comment.user.name %>&nbsp;&nbsp;
             <% if (locals.user && locals.user.id == comment.user.id) { %>

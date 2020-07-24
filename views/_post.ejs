@@ -7,7 +7,12 @@
             <a href="/posts/destroy/<%= post.id %>">Delete</a>
             <% } %>
         </p>
-
+        <% if(locals.user){ %>
+        <a href="/likes/toggle/?id=<%= post.id %>&type=Post" class="like-button"
+            data-likes="<%= post.likes.length %>"><%= post.likes.length %> Likes</a>
+        <% } else{ %>
+        <%= post.likes.length %> Likes
+        <% } %>
     </div>
 
     <div class="post-comments">

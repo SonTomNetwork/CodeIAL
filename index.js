@@ -4,11 +4,14 @@ const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+
+//Used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth-strategy');
+
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash'); 3
@@ -22,10 +25,12 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 app.use(express.static('./assets'));
-//Make Uploads path available
-app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Make Uploads path available
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
@@ -49,6 +54,7 @@ app.use(session({
             console.log(err || 'connect-mongodb setup ok');
         })
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -1,12 +1,13 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const Like = require('../models/like');
 const commentsMailer = require('../mailers/comments_mailer');
 const commentEmailWorker = require('../workers/comment_email_worker');
 const queue = require('../config/kue');
 
 module.exports.create = async function (req, res) {
     try {
-        post = await Post.findById(req.body.post);
+        let post = await Post.findById(req.body.post);
 
         if (post) {
             let comment = await Comment.create({
@@ -28,6 +29,16 @@ module.exports.create = async function (req, res) {
                 console.log('Job enqueued', job.id);
             });
 
+            if (req.xhr) {
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: "Post created!"
+                });
+            }
+
+            req.flash('success', 'Comment published!');
             res.redirect('/');
         }
     } catch (err) {
@@ -46,12 +57,26 @@ module.exports.destroy = async function (req, res) {
 
             let post = await Post.findByIdAndUpdate(postID, { $pull: { comments: req.params.id } });
 
+            await Like.deleteMany({ likeable: comment.id, onModel: 'Comment' });
+
+            if (req.xhr) {
+                return res.status(200).json({
+                    data: {
+                        comment_id: req.params.id
+                    },
+                    message: "Post deleted"
+                });
+            }
+
+            req.flash('success', 'Comment deleted!');
             return res.redirect('back');
         }
         else {
+            req.flash('error', 'Unauthorized');
             return res.redirect('back');
         }
-    } catch (error) {
+    } catch (err) {
+        req.flash('error', err);
         console.log('Error:', err);
         return;
     }
