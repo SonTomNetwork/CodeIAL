@@ -1,18 +1,19 @@
 <ul id="post-comments-<%= post._id %>">
     <% if (typeof post.comments != "undefined" && post.comments.length > 0) { %>
     <% for (comment of post.comments) { %>
-    <li>
+    <li id="comment-<%= comment._id %>">
         <p id="comment-content"><%= comment.content %></p>
         <% if(locals.user){ %>
         <a href="/likes/toggle/?id=<%= comment.id %>&type=Comment" class="like-button"
-            data-likes="<%= comment.likes.length %>"><%= comment.likes.length %> Likes</a>
+            data-likes="<%= comment.likes.length %>">
+            <%= comment.likes.length %> Likes</a>
         <% } else{ %>
         <%= comment.likes.length %> Likes
         <% } %>
         <p id="comment-username">
-            <%= comment.user.name %>&nbsp;&nbsp;
-            <% if (locals.user && locals.user.id == comment.user.id) { %>
-            <a href="/comments/destroy/<%= comment.id %>">Delete</a>
+            <%= `${comment.id}` %>&nbsp;&nbsp;
+            <% if (locals.user && locals.user.id == comment.user) { %>
+            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">Delete</a>
             <% } %>
         </p>
     </li>

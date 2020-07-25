@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const likeSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectID
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'User'
     },
     likeable: {
         type: mongoose.Schema.Types.ObjectID,
