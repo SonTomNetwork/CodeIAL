@@ -3,7 +3,7 @@
     Profile
 </h1>
 
-<img src="<%= user.pfp %>" alt="<%= profile_user.name %>" width="300">
+<img src="<%= profile_user.pfp %>" alt="<%= profile_user.name %>" width="300">
 
 <% if (user.id == profile_user.id) { %>
 <form action="/users/update/<%= profile_user.id%>" enctype="multipart/form-data" method="POST">
@@ -16,3 +16,33 @@
 <p><%= profile_user.name %></p>
 <p><%= profile_user.email %></p>
 <% } %>
+
+<% if (user.id != profile_user.id) { %>
+<% var flag=0;
+if (user.follow.length == 0){ %>
+<form id="follow-<%= profile_user.id %>" action="/follow/add" method="POST">
+    <input type="hidden" name="followid" value="<%= profile_user.id %>">
+    <input type="submit" value="Follow" id="followbutton">
+</form>
+<% flag = 1; } %>
+
+<% for (foll of user.follow) {
+if (foll == profile_user.id) { %>
+Following
+<%
+flag=1;
+console.log(foll);
+console.log('Followed User'); 
+%>
+<form id="unfollow-<%= profile_user.id %>" action="/follow/remove/<%= profile_user.id %>" method="GET">
+    <input type="hidden" name="followid" value="<%= profile_user.id %>">
+    <input type="submit" value="Unfollow" id="unfollowbutton">
+</form>
+<% break;
+}}
+if (flag==0){ %>
+<form id="follow-<%= profile_user.id %>" action="/follow/add" method="POST">
+    <input type="hidden" name="followid" value="<%= profile_user.id %>">
+    <input type="submit" value="Follow" id="followbutton">
+</form>
+<% } } %>

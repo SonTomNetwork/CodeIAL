@@ -11,7 +11,7 @@
         <%= comment.likes.length %> Likes
         <% } %>
         <p id="comment-username">
-            <%= `${comment.id}` %>&nbsp;&nbsp;
+            <%= comment.user %>&nbsp;&nbsp;
             <% if (locals.user && locals.user.id == comment.user) { %>
             <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">Delete</a>
             <% } %>

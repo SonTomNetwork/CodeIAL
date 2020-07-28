@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema({
     pfp: {
         type: String,
     },
+    follow: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 }, {
     timestamps: true
 });
