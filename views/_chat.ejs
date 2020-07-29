@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/chat.css">
+
+<% if(locals.user) { %>
+<chat>
+    <div class="chathead">
+        <h2>CodeIAL Chat</h2>
+    </div>
+    <div id="user-chatbox">
+        <ul id="chat-list">
+            <li class="othermessage cmessage">
+                May I help you?
+            </li>
+            <li class="selfmessage cmessage">
+                No.
+            </li>
+        </ul>
+    </div>
+    <div id="chatsend">
+        <input type="text" id="chattext">
+        <button id="chatbutton">Send</button>
+    </div>
+</chat>
+<% } %>
