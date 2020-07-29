@@ -1,0 +1,113 @@
+chat {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 7fr 1.5fr;
+  column-gap: 0px;
+  row-gap: 0px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 15px;
+  border-bottom-right-radius: 0px;
+  background-color: #fffffe;
+  resize: both;
+  overflow: auto;
+  min-width: 300px;
+  max-width: 400px;
+  min-height: 400px;
+  max-height: 600px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+chat .chathead {
+  grid-area: 1 / 1 / 2 / 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #d9376e;
+  color: #fffffe;
+  padding: 0px 10px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+chat .chathead h2 {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0px;
+  margin: 0px;
+}
+
+chat #user-chatbox {
+  grid-area: 2 / 1 / 3 / 3;
+  font-size: 16px;
+  background-color: #fffffe;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+chat #chat-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+chat .cmessage {
+  margin: 5px 0px;
+  padding: 10px;
+  max-width: 80%;
+  width: auto;
+  border-radius: 5px;
+}
+
+chat .othermessage {
+  background-color: #eff0f3;
+  text-align: left;
+  padding-left: 15px;
+  align-self: flex-start;
+}
+
+chat .selfmessage {
+  background-color: #ff8e3c;
+  text-align: right;
+  padding-right: 15px;
+  align-self: flex-end;
+}
+
+chat #chatsend {
+  grid-area: 3 / 1 / 4 / 3;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0px;
+}
+
+chat #chatsend #chattext {
+  width: 75%;
+  font-size: 16px;
+  outline: 0px;
+  border: 0px;
+  font-family: 'Raleway', sans-serif;
+  background-color: rgba(239, 240, 243, 0.5);
+  color: #0d0d0d;
+  padding: 5px;
+}
+
+chat #chatsend #chatbutton {
+  width: 25%;
+  font-size: 16px;
+  border: 0px;
+  outline: 0px;
+  font-family: 'Raleway', sans-serif;
+  background-color: #d9376e;
+  color: #fffffe;
+  font-weight: 600;
+}
